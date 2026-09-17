@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Go Green – Digital Bill | Sarvyanta</title>
+
+  <meta name="description"
+        content="Sarvyanta Go Green – Create and share digital bills easily without paper. A free digital billing initiative for local businesses.">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="top-bar">
+    <div class="brand">
+      <div class="brand-name">SARVYANTA</div>
+      <div class="brand-tagline">Building an Intelligent World</div>
+    </div>
+
+    <div class="green-badge">
+      🌱 Go Green
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+      <div class="hero-icon">🌱</div>
+
+      <h1>Go Green</h1>
+
+      <h2>Write Your Bill Digitally</h2>
+
+      <p>
+        A simple, paper-free billing initiative by Sarvyanta.
+        Create your bill online and share it directly with your customer.
+      </p>
+
+      <button class="primary-btn"
+              onclick="showBillingForm()">
+        Write Bill Summary
+      </button>
+    </section>
+
+
+    <!-- BILLING FORM -->
+    <section id="billingSection" class="billing-section hidden">
+
+      <div class="card">
+
+        <div class="section-title">
+          <span>🧾</span>
+          <h2>Bill Summary</h2>
+        </div>
+
+        <!-- SHOP NAME -->
+        <div class="form-group">
+          <label for="shopName">Shop Name</label>
+
+          <input
+            type="text"
+            id="shopName"
+            placeholder="Enter shop name"
+            maxlength="100"
+          >
+        </div>
+
+
+        <!-- SERVICES -->
+        <div class="services-header">
+          <h3>Services / Items</h3>
+
+          <button
+            type="button"
+            class="add-btn"
+            onclick="addRow()">
+            + Add Item
+          </button>
+        </div>
+
+
+        <div class="table-wrapper">
+
+          <table id="billTable">
+
+            <thead>
+              <tr>
+                <th>Service / Item</th>
+                <th>Price (₹)</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="billBody">
+
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    class="service"
+                    placeholder="Service / Item"
+                  >
+                </td>
+
+                <td>
+                  <input
+                    type="number"
+                    class="price"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                    oninput="calculateTotal()"
+                  >
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    onclick="removeRow(this)">
+                    ×
+                  </button>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    class="service"
+                    placeholder="Service / Item"
+                  >
+                </td>
+
+                <td>
+                  <input
+                    type="number"
+                    class="price"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                    oninput="calculateTotal()"
+                  >
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    onclick="removeRow(this)">
+                    ×
+                  </button>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    class="service"
+                    placeholder="Service / Item"
+                  >
+                </td>
+
+                <td>
+                  <input
+                    type="number"
+                    class="price"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                    oninput="calculateTotal()"
+                  >
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    onclick="removeRow(this)">
+                    ×
+                  </button>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    class="service"
+                    placeholder="Service / Item"
+                  >
+                </td>
+
+                <td>
+                  <input
+                    type="number"
+                    class="price"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                    oninput="calculateTotal()"
+                  >
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    onclick="removeRow(this)">
+                    ×
+                  </button>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td>
+                  <input
+                    type="text"
+                    class="service"
+                    placeholder="Service / Item"
+                  >
+                </td>
+
+                <td>
+                  <input
+                    type="number"
+                    class="price"
+                    placeholder="0"
+                    min="0"
+                    step="1"
+                    oninput="calculateTotal()"
+                  >
+                </td>
+
+                <td>
+                  <button
+                    type="button"
+                    class="delete-btn"
+                    onclick="removeRow(this)">
+                    ×
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+
+            <tfoot>
+              <tr>
+                <td class="total-label">
+                  Total
+                </td>
+
+                <td class="total-value">
+                  ₹<span id="totalAmount">0</span>
+                </td>
+
+                <td></td>
+              </tr>
+            </tfoot>
+
+          </table>
+
+        </div>
+
+
+        <!-- BILL PREVIEW -->
+        <div id="billPreview" class="preview hidden">
+
+          <div class="preview-header">
+            <h2 id="previewShopName"></h2>
+            <p>Digital Bill</p>
+          </div>
+
+          <div id="previewItems"></div>
+
+          <div class="preview-total">
+            <span>Total</span>
+            <strong>₹<span id="previewTotal">0</span></strong>
+          </div>
+
+          <div class="preview-footer">
+            <p>Thank you for your business!</p>
+            <small
